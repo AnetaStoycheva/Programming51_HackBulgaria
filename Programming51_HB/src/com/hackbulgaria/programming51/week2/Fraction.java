@@ -2,10 +2,10 @@ package com.hackbulgaria.programming51.week2;
 
 public class Fraction {
 	
-	int numerator = 0;
-	int denominator = 1;
+	public int numerator = 0;
+	public int denominator = 1;
 	
-	Fraction(int numerator, int denominator) {
+	public Fraction(int numerator, int denominator) {
 		if (denominator == 0) {
 			throw new IllegalArgumentException("Can't create a fraction with denominator 0!");
 		}

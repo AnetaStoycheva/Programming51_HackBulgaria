@@ -14,7 +14,5 @@ public class FractionMain {
 		
 		c.simplify();
 		System.out.println(c);
-
 	}
-
 }
