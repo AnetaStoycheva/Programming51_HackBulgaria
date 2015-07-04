@@ -23,4 +23,8 @@ public class TravelExpense {
 	public double getCost() {
 		return cost;
 	}
+	
+	public String toString() {
+		return "Type: " + type + " Employee: " + employee + " netCost: " + cost;
+	}
 }

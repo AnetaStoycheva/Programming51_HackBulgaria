@@ -24,14 +24,19 @@ public class TravelMain {
 		conf.addExpense(dinner);
 		conf.addExpense(breakfast);
 
-		System.out.println(conf.totalNetCost() == 100); // true
-		System.out.println(conf.totalCost() == 120); // VAT Included -> true
+		System.out.println(conf.totalNetCost() == 130); // true
+		System.out.println(conf.totalCost() == 156); // VAT Included -> true
 		
 		System.out.println(conf.totalCost());
 		
-//		Employee[] toFire = conf.mostExpensesMadeBy();
+		Employee[] toFire = conf.mostExpensesMadeBy();
 
-//		System.out.println(toFire[0].getName().equals("Ivaylo")); // true
+		System.out.println(toFire[0].getName().equals("Ivaylo")); // true
+		
+		for (Employee employee: toFire) {
+			System.out.println(employee);
+		}
+		
+		System.out.println(conf);
 	}
-
 }
