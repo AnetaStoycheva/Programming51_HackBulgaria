@@ -26,6 +26,10 @@ public class IntegerVector {
 		return values[index];
 	}
 	
+	public void set(int index, int value) {
+		values[index] = value;
+	}
+	
 	public void add(int e) {
 		resizeIfNecessary();
 		
