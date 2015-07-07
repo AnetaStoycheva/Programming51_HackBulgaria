@@ -1,5 +1,7 @@
 package com.hackbulgaria.programming51.week4;
 
+import java.util.Scanner;
+
 public class StringNormalizer {
 
 	public static String normalizeString(String s) {
@@ -23,4 +25,12 @@ public class StringNormalizer {
         }
         return result.substring(0, result.length() - 1);
     }
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+        String s = scanner.nextLine();
+
+        System.out.println(normalizeString(s));
+	}
 }
