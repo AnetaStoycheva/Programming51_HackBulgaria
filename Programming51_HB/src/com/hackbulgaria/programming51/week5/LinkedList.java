@@ -164,16 +164,18 @@ public class LinkedList<T> {
 		}
 	}
 	
-	private LinkedList<T> copy(LinkedList<T> l) {
-    	LinkedList<T> newL = new LinkedList<T>();
-    	if (head == null) return newL;
+	private static <T> LinkedList<T> copy(LinkedList<T> l) {
+    	LinkedList<T> newList = new LinkedList<T>();
+    	if (l.head == null) {
+    		return newList;
+    	}
     	Node <T> temp = l.head;
     	while (temp.next != null) {
-    		newL.addLast(temp.value);
+    		newList.addLast(temp.value);
     		temp = temp.next;
     	}
-    	newL.addLast(temp.value);
-    	return newL;	
+    	newList.addLast(temp.value);
+    	return newList;	
     }
 
     public void insertListAfter(int index, LinkedList<T> l) {
@@ -197,8 +199,8 @@ public class LinkedList<T> {
     	if (index == 0) {
     		l.tail.next = head;
     		head = l.head;
-    		int newsize = size();
-    		newsize += l.size();
+    		int newSize = size();
+    		newSize += l.size();
     	} else {
     		insertListAfter(index - 1, l);
     	}
