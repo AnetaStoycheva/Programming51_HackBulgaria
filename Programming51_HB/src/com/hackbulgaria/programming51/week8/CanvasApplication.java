@@ -2,9 +2,9 @@ package com.hackbulgaria.programming51.week8;
 
 import javax.swing.JFrame;
 
-public class Application extends JFrame {
+public class CanvasApplication extends JFrame {
 
-	public Application() {
+	public CanvasApplication() {
 		super.add(new Canvas());  // moje i bez super
 
 		setResizable(false);
@@ -18,7 +18,7 @@ public class Application extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		Application app = new Application();
+		CanvasApplication app = new CanvasApplication();
 		app.setVisible(true);
 	}
 }

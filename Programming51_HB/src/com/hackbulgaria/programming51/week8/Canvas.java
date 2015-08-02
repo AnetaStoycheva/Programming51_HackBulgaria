@@ -13,17 +13,17 @@ public class Canvas extends JPanel {
 	public final int WIDTH = 800;
 	public final int HEIGHT = 800;
 
-	public static int SQUARE_WIDTH = 400;
+	public static int HALF = 400;
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);  //  vajno, za da se narisuva!
 
 		Graphics2D g2 = (Graphics2D) g;
 
-		Rectangle2D.Double upLeftSquare = new Rectangle2D.Double(0, 0, SQUARE_WIDTH, SQUARE_WIDTH);
-		Rectangle2D.Double upRightSquare = new Rectangle2D.Double(400, 0, SQUARE_WIDTH, SQUARE_WIDTH);
-		Rectangle2D.Double downLeftSquare = new Rectangle2D.Double(0, 400, SQUARE_WIDTH, HEIGHT);
-		Rectangle2D.Double downRightSquare = new Rectangle2D.Double(400, 400, SQUARE_WIDTH, HEIGHT);
+		Rectangle2D.Double upLeftSquare = new Rectangle2D.Double(0, 0, HALF, HALF);
+		Rectangle2D.Double upRightSquare = new Rectangle2D.Double(400, 0, HALF, HALF);
+		Rectangle2D.Double downLeftSquare = new Rectangle2D.Double(0, 400, HALF, HEIGHT);
+		Rectangle2D.Double downRightSquare = new Rectangle2D.Double(400, 400, HALF, HEIGHT);
 		
 		g2.setPaint(Color.GREEN);
 		g2.fill(upLeftSquare);
