@@ -5,10 +5,10 @@ import javax.swing.JFrame;
 public class Application extends JFrame {
 
 	public Application() {
-		add(new Canvas());
+		super.add(new Canvas());  // moje i bez super
 
 		setResizable(false);
-		pack();
+		super.pack(); // moje i bez super
 
 		setTitle("My application name");
 

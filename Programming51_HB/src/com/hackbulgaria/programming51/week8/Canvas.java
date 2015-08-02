@@ -16,11 +16,10 @@ public class Canvas extends JPanel {
 	public static int SQUARE_WIDTH = 400;
 
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+		super.paintComponent(g);  //  vajno, za da se narisuva!
 
 		Graphics2D g2 = (Graphics2D) g;
 
-		// an example
 		Rectangle2D.Double upLeftSquare = new Rectangle2D.Double(0, 0, SQUARE_WIDTH, SQUARE_WIDTH);
 		Rectangle2D.Double upRightSquare = new Rectangle2D.Double(400, 0, SQUARE_WIDTH, SQUARE_WIDTH);
 		Rectangle2D.Double downLeftSquare = new Rectangle2D.Double(0, 400, SQUARE_WIDTH, HEIGHT);
