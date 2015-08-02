@@ -37,12 +37,7 @@ public class LinkedList<T> {
 	private Node<T> getElement(int index) {
 		int counter = 0;
 		Node<T> temp = head;
-		while (temp != null) {
-			if (counter == index) {
-				break;
-			}
-			temp = temp.next;
-			counter++;
+		for (; counter < index && temp != null; counter++, temp = temp.next) {
 		}
 		return temp;
 	}
@@ -59,9 +54,7 @@ public class LinkedList<T> {
 
 	public void addFirst(T value) {
 		// Insert an element at the beginning of the list
-		Node<T> newNode = new Node<>(value);
-		newNode.setNext(head);
-		head = newNode;
+		head = new Node<>(value, head);
 		if (tail == null) {
 			tail = head;
 		}
@@ -98,17 +91,26 @@ public class LinkedList<T> {
 	private int findElementByData(T value) {
 		Node<T> temp = head;
 		int counter = 0;
-		while (true) {
-			if (temp.getData() == value) {
-				return counter;
-			} else {
-				temp = temp.getNext();
-				counter++;
-				if (temp == null) {
-					return -1;
-				}
-			}
+		for (; temp != null && temp.getData() != value; temp = temp.getNext(), counter++) {
 		}
+		return temp == null ? -1 : counter;
+		
+//		if (temp == null) {
+//			return -1;
+//		} else {
+//			return counter;
+//		}
+//		while (true) {
+//			if (temp.getData() == value) {
+//				return counter;
+//			} else {
+//				temp = temp.getNext();
+//				counter++;
+//				if (temp == null) {
+//					return -1;
+//				}
+//			}
+//		}
 	}
 
 	public int getElementIndex(T data) {
@@ -116,6 +118,92 @@ public class LinkedList<T> {
 		return findElementByData(data);
 	}
 
+	public void removeAll() {
+		// Remove all elements from the list
+		head = null;
+		tail = null; // allow garbage collector to do his job
+	}
+
+	public boolean isEmpty() {
+		return head == null && tail == null;
+	}
+
+	public void addAll(T[] values) {
+		for (int i = 0; i < values.length; i++) {
+			addLast(values[i]);
+		}
+	}
+
+//	public T[] toArray() {
+//		// Returns an array with all the elements in the list
+//		T[] result = (T[]) new Object[size()];
+//		Node<T> temp = head;
+//		int index = 0;
+//		while (temp != null) {
+//			result[index] = temp.getData();
+//			index++;
+//			temp = temp.next;
+//		}
+//		return result;
+//	}
+	
+	public T[] toArray(T[] arr) {
+		Node<T> temp = head;
+		for (int i= 0; temp != null; i++) {
+			arr[i] = temp.value;
+			temp = temp.next;
+		}
+		return arr;
+	}
+	
+	public void addArray(T[] arr) {
+		// Appends the array at the end of the list
+//		T[] result = (T[]) new Object[size()];
+		for (int i = 0; i < arr.length; i++) {
+			addLast(arr[i]);
+		}
+	}
+	
+	private LinkedList<T> copy(LinkedList<T> l) {
+    	LinkedList<T> newL = new LinkedList<T>();
+    	if (head == null) return newL;
+    	Node <T> temp = l.head;
+    	while (temp.next != null) {
+    		newL.addLast(temp.value);
+    		temp = temp.next;
+    	}
+    	newL.addLast(temp.value);
+    	return newL;	
+    }
+
+    public void insertListAfter(int index, LinkedList<T> l) {
+        // Inserts all the elements of l after the index element
+    	l = copy(l);
+    	if (l.size() == 0) return;
+    	if (size() - 1 == index) {
+    		tail.next = l.head;
+    		tail = l.tail;
+    	} else {
+    		Node <T> node = getElement(index); 
+    		l.tail.next = node.next;
+    		node.next = l.head;
+    	}
+    	int newsize = size();
+    	newsize += l.size();
+    }
+    public void insertListBefore(int index, LinkedList<T> l){
+        // Inserts all the elements of l before the index element
+    	l = copy(l);
+    	if (index == 0) {
+    		l.tail.next = head;
+    		head = l.head;
+    		int newsize = size();
+    		newsize += l.size();
+    	} else {
+    		insertListAfter(index - 1, l);
+    	}
+    }
+    
 	public int size() {
 		int counter = 0;
 		Node<T> temp = head;
@@ -138,59 +226,5 @@ public class LinkedList<T> {
 		}
 		return str + temp.value + "]";
 	}
-
-	public void removeAll() {
-		head = null;
-		tail = null; // allow garbage collector to do his job
-	}
-
-	public boolean isEmpty() {
-		return head == null && tail == null;
-	}
-
-	public void addAll(T[] values) {
-		for (int i = 0; i < values.length; i++) {
-			addLast(values[i]);
-		}
-	}
-
-	// public static void main(String[] args) {
-	// LinkedList<Integer> l = new LinkedList<>();
-	// for (int i = 10; i < 20; i++) {
-	// l.addLast(i);
-	// }
-	// System.out.println(l);
-	// l.insertAfter(2, 5);
-	// System.out.println(l);
-	// l.insert(1, 100);
-	// System.out.println(l);
-	// l.set(1, 200);
-	// System.out.println(l);
-	// l.remove(1);
-	// System.out.println(l);
-	// l.addFirst(8);
-	// System.out.println(l);
-	// System.out.println(l.size());
-	// l.removeAll();
-	// System.out.println(l);
-	// }
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		LinkedList<Integer> l = new LinkedList<>();
-
-		int n = scanner.nextInt();
-		for (int i = 0; i < n; i++) {
-			l.addLast(scanner.nextInt());
-		}
-		l.insertAfter(3, scanner.nextInt());
-		l.remove(2);
-		l.addFirst(scanner.nextInt());
-
-		int x = scanner.nextInt();
-
-		System.out.println(l.contains(x));
-		System.out.println(l.getFirst() + " " + l.getLast());
-		System.out.println(l);
-	}
+	
 }
