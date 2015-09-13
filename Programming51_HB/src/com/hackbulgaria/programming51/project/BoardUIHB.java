@@ -45,7 +45,7 @@ public class BoardUIHB extends JPanel {
 		PathFinder finder = new PathFinder(board);
 		List<Node> result = finder.findWay();
 		
-		System.out.println(result.size());
+		System.out.println("The length of the shortest path is: " + (result.size() + 1));
 		
 		for (Node node : result) {
 			this.definition[node.getX()][node.getY()] = 'p';
